@@ -24,7 +24,6 @@ $container = get_theme_mod( 'understrap_container_type' );
 				<main class="site-main" id="main">
 
 					<section class="error-404 not-found">
-test
 						<header class="page-header">
 
 							<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'understrap' ); ?></h1>
