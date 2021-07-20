@@ -6,6 +6,8 @@
  * @package Understrap
  */
 
+use JP\CC\Site\Posts;
+
 // Exit if accessed directly.
 defined('ABSPATH') || exit;
 
@@ -239,14 +241,48 @@ get_header();
             </div> -->
             <div>
                 <h3 class="hor-sep-d"> Best of the Week</h3>
+                <div class="vocabmain-container" style="padding-top: 2rem;">
+                    <P class="vocabiframe-font"> your best teacher </P>
+                    <!-- <div class="vocabiframe-container"> -->
+                        <?php
+                        $args = array(
+                            'post-type' => 'post',
+                            'post-status' => 'publish',
+                            'cat' => 18,
+                            'posts_per_page' => 1,
+                        );
+
+                        $arr_posts = new WP_Query($args);
+                        // var_dump($arr_posts->posts)
+                        ?>
+
+                        <?php if (!empty($arr_posts)) : ?>
+                            <?php $teacherPosts = $arr_posts->posts ?>
+                            <?php foreach ($teacherPosts as $teacherPost) : ?>
+                                <?php
+                                $teacher_post_id = $teacherPost->ID;
+                                $teacher_post_title = $teacherPost->post_title;
+                                $teacher_thumb_id = get_post_thumbnail_id($teacher_post_id);
+                                $teacher_image_sm = wp_get_attachment_image_src($teacher_thumb_id, 'small');
+                                ?>
+                                <div class="home-featured-image">
+                                    <a href="<?php the_permalink($teacher_post_id); ?>" rel="bookmark" title="Image for <?php echo $teacher_post_title; ?>">
+                                        <img src="<?php echo $teacher_image_sm[0] ?>" alt="<?php echo $teacher_post_title; ?>" style="width: 270px;height: 150px;object-fit: cover;">
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                            <?php wp_reset_postdata(); ?>
+                        <?php endif; ?>
+                    <!-- </div> -->
+                </div>
                 <div class="vocabmain-container">
-                    <P class="vocabiframe-font"> know your vocabularies </P>
+                    <P class="vocabiframe-font"> funny videos </P>
                     <div class="vocabiframe-container">
                         <?php
                         $args = array(
                             'post-type' => 'post',
                             'post-status' => 'publish',
-                            'cat' => '13',
+                            'cat' => '17',
                             'posts_per_page' => 1,
                         );
 
@@ -313,79 +349,39 @@ get_header();
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="vocabmain-container">
-                    <P class="vocabiframe-font"> know your vocabularies </P>
-                    <div class="vocabiframe-container">
+                <div class="vocabmain-container" style="padding-top: 2rem;">
+                    <P class="vocabiframe-font"> personalities </P>
+                    <!-- <div class="vocabiframe-container"> -->
                         <?php
                         $args = array(
                             'post-type' => 'post',
                             'post-status' => 'publish',
-                            'cat' => '13',
+                            'cat' => 10,
                             'posts_per_page' => 1,
                         );
 
                         $arr_posts = new WP_Query($args);
-                        // var_dump($arr_posts)
+                        // var_dump($arr_posts->posts)
                         ?>
 
                         <?php if (!empty($arr_posts)) : ?>
-                            <?php $vocabPosts = $arr_posts->posts ?>
-                            <?php foreach ($vocabPosts as $vocabPost) : ?>
+                            <?php $teacherPosts = $arr_posts->posts ?>
+                            <?php foreach ($teacherPosts as $teacherPost) : ?>
                                 <?php
-                                $vocab_post_id = $vocabPost->ID;
-                                $vocab_post_title = $vocabPost->post_title;
-                                $vocab_post_excerpt = $vocabPost->post_excerpt;
-                                $vocab_post_content = $vocabPost->post_content;
-                                $vocab_thumb_id = get_post_thumbnail_id($vocab_post_id);
-                                $vocab_image_sm = wp_get_attachment_image_src($vocab_thumb_id, 'normal');
-                                $vocab_post_author = $vocabPost->post_author;
-                                $last_name = get_the_author_meta('last_name', $vocab_post_author);
-                                $first_name = get_the_author_meta('first_name', $vocab_post_author);
-                                $vocab_post_category = get_the_category($vocab_post_id)
+                                $teacher_post_id = $teacherPost->ID;
+                                $teacher_post_title = $teacherPost->post_title;
+                                $teacher_thumb_id = get_post_thumbnail_id($teacher_post_id);
+                                $teacher_image_sm = wp_get_attachment_image_src($teacher_thumb_id, 'small');
                                 ?>
-                                <!-- src="https://www.youtube.com/embed/yIFJM5sR4jo?rel=0&modestbranding=1&showinfo=0" -->
-                                <iframe id="vocabIframe" src="<?php echo $vocab_post_content ?>" frameborder="0" width="90%"></iframe>
+                                <div class="home-featured-image">
+                                    <a href="<?php the_permalink($teacher_post_id); ?>" rel="bookmark" title="Image for <?php echo $teacher_post_title; ?>">
+                                        <img src="<?php echo $teacher_image_sm[0] ?>" alt="<?php echo $teacher_post_title; ?>" style="width: 270px;height: 150px;object-fit: cover;">
+                                    </a>
+                                </div>
                             <?php endforeach; ?>
                             <?php wp_reset_postdata(); ?>
                         <?php endif; ?>
-                    </div>
-                </div>
-                <div class="vocabmain-container">
-                    <P class="vocabiframe-font"> know your vocabularies </P>
-                    <div class="vocabiframe-container">
-                        <?php
-                        $args = array(
-                            'post-type' => 'post',
-                            'post-status' => 'publish',
-                            'cat' => '13',
-                            'posts_per_page' => 1,
-                        );
-
-                        $arr_posts = new WP_Query($args);
-                        // var_dump($arr_posts)
-                        ?>
-
-                        <?php if (!empty($arr_posts)) : ?>
-                            <?php $vocabPosts = $arr_posts->posts ?>
-                            <?php foreach ($vocabPosts as $vocabPost) : ?>
-                                <?php
-                                $vocab_post_id = $vocabPost->ID;
-                                $vocab_post_title = $vocabPost->post_title;
-                                $vocab_post_excerpt = $vocabPost->post_excerpt;
-                                $vocab_post_content = $vocabPost->post_content;
-                                $vocab_thumb_id = get_post_thumbnail_id($vocab_post_id);
-                                $vocab_image_sm = wp_get_attachment_image_src($vocab_thumb_id, 'normal');
-                                $vocab_post_author = $vocabPost->post_author;
-                                $last_name = get_the_author_meta('last_name', $vocab_post_author);
-                                $first_name = get_the_author_meta('first_name', $vocab_post_author);
-                                $vocab_post_category = get_the_category($vocab_post_id)
-                                ?>
-                                <!-- src="https://www.youtube.com/embed/yIFJM5sR4jo?rel=0&modestbranding=1&showinfo=0" -->
-                                <iframe id="vocabIframe" src="<?php echo $vocab_post_content ?>" frameborder="0" width="90%"></iframe>
-                            <?php endforeach; ?>
-                            <?php wp_reset_postdata(); ?>
-                        <?php endif; ?>
-                    </div>
+                    <!-- </div> -->
                 </div>
             </div>
 

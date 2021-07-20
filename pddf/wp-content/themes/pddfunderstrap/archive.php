@@ -45,7 +45,7 @@ $container = get_theme_mod('understrap_container_type');
 							$counter++;
 						}
 					}
-					var_dump($new_arr)
+					// var_dump($new_arr)
 				?>
 					<header class="page-header">
 						<?php

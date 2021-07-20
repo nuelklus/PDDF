@@ -67,7 +67,11 @@ $container = get_theme_mod('understrap_container_type');
                                         <?php echo $arts_post_title ?>
                                     </a>
                                 </h3>
-                                <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo $arts_post_excerpt ?> </p>
+                                <?php if (empty($artsPost->post_excerpt)) { ?>
+                                    <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo wp_kses_post(wp_trim_words($artsPost->post_content, 20));  ?> </p>
+                                <?php } else { ?>
+                                    <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo $arts_post_excerpt ?> </p>
+                                <?php } ?>
                                 <p class="category-post-author"> <span> by </span> <?php echo $last_name, ' ', $first_name ?></p>
                             </div>
                         </div>
@@ -180,7 +184,11 @@ $container = get_theme_mod('understrap_container_type');
                                                 <?php echo $arts_post_title_of_zero ?>
                                             </a>
                                         </h3>
-                                        <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo $arts_post_excerpt_of_zero ?> </p>
+                                        <?php if (empty($arts_post_excerpt_of_zero)) { ?>
+                                            <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo wp_kses_post(wp_trim_words($arts_post_content_of_zero, 20)); ?> </p>
+                                        <?php } else { ?>
+                                            <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo $arts_post_excerpt_of_zero ?> </p>
+                                        <?php } ?>
                                         <p class="category-post-author"> <span> by </span> <?php echo $last_name_of_zero, ' ', $first_name_of_zero ?></p>
                                     </div>
                                 </div>
@@ -197,7 +205,11 @@ $container = get_theme_mod('understrap_container_type');
                                                     <?php echo $arts_post_title_of_one ?>
                                                 </a>
                                             </h3>
-                                            <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo $arts_post_excerpt_of_one ?> </p>
+                                            <?php if (empty($arts_post_excerpt_of_one)) { ?>
+                                                <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo wp_kses_post(wp_trim_words($arts_post_content_of_one, 20)); ?> </p>
+                                            <?php } else { ?>
+                                                <p class="home-post-middle-excerpt category-post-excerpt"> <?php echo $arts_post_excerpt_of_one ?> </p>
+                                            <?php } ?>
                                             <p class="category-post-author"> <span> by </span> <?php echo $last_name_of_one, ' ', $first_name_of_one ?></p>
                                         </div>
                                     </div>

@@ -59,13 +59,13 @@ function redirect_if_user_not_logged_in()
 }
 
 
-// function generate_post_excerpt($post_excerpt, $post_content, $post_excerpt_length = 30){
-// 	if (!empty($post_excerpt)){
-// 		return $post_excerpt;
-// 	}
+function generate_post_excerpt($post_excerpt, $post_content, $post_excerpt_length = 30){
+	if (!empty($post_excerpt)){
+		return $post_excerpt;
+	}
 
-// 	return wp_trim_words($post_content, $post_excerpt_length,'');
-// }
+	return wp_trim_words($post_content, $post_excerpt_length,'');
+}
 
 
 add_filter('get_the_archive_title', function ($title) {
@@ -83,25 +83,25 @@ add_filter('get_the_archive_title', function ($title) {
 	return $title;
 });
 
-function custom_the_excerpt($trim_char_count = 0)
-{
-	if (!has_excerpt() || 0 === $trim_char_count) {
-		// the_excerpt();
+// function custom_the_excerpt($trim_char_count = 0)
+// {
+// 	if (!has_excerpt() || 0 === $trim_char_count) {
+// 		the_excerpt();
 
-		$excerpt = wp_strip_all_tags(get_the_excerpt());
-		$excerpt = substr($excerpt, 0, $trim_char_count);
-		$excerpt = substr($excerpt, 0, strrpos($excerpt, ' '));
+// 		// $excerpt = wp_strip_all_tags(get_the_excerpt());
+// 		// $excerpt = substr($excerpt, 0, $trim_char_count);
+// 		// $excerpt = substr($excerpt, 0, strrpos($excerpt, ' '));
 
-		echo $excerpt;
-		// echo $excerpt . '[...]';
-		return;
-	}
+// 		// echo $excerpt;
+// 		// echo $excerpt . '[...]';
+// 		return;
+// 	}
 
-	$excerpt = wp_strip_all_tags(get_the_excerpt());
-	$excerpt = substr($excerpt, 0, $trim_char_count);
-	$excerpt = substr($excerpt, 0, strrpos($excerpt, ' '));
+// 	$excerpt = wp_strip_all_tags(get_the_excerpt());
+// 	$excerpt = substr($excerpt, 0, $trim_char_count);
+// 	$excerpt = substr($excerpt, 0, strrpos($excerpt, ' '));
 
-	echo $excerpt;
-	// echo $excerpt . '[...]';
-}
+// 	echo $excerpt;
+// 	// echo $excerpt . '[...]';
+// }
 
